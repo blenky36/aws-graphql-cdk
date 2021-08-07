@@ -1,0 +1,18 @@
+{
+  "name": "cdk-nodejs-lambda",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Phil Blenkinsop",
+  "dependencies": {
+    "@aws-cdk/aws-apigateway": "^1.117.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.117.0",
+    "@aws-cdk/core": "^1.117.0",
+    "@types/node": "^16.4.13",
+    "apollo-server-lambda": "^3.1.2",
+    "graphql": "^15.5.1",
+    "typescript": "^4.3.5"
+  },
+  "scripts": {
+    "dev": "sam-beta-cdk local start-api"
+  }
+}
