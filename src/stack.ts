@@ -1,19 +1,20 @@
-import { Construct, Stack, App } from '@aws-cdk/core'
-import { nodeJSLambda } from './cdk/lambda'
-import { lambdaIntegration, restApi } from './cdk/restApi'
+import { App, Construct, Stack } from "@aws-cdk/core";
+import { nodeJSLambda } from "./lambda";
+import { lambdaIntegration, restApi } from "./restApi";
 
 const serverlessGraphQLStack = (construct: Construct) => {
     const stack = new Stack(construct, 'ServerlessGraphQLStack')
 
-    const graphQLApiGateway = restApi(stack, 'ServerlessGraphQLApi')
+    const graphQLServerLambda = nodeJSLambda(stack, 'GraphQLServerLambda', '../graphql-lambda/index.ts')
 
-    const graphQLServerLambda = nodeJSLambda(stack, 'ServerlessGraphQLServerLambda', './graphql-lambda/index.ts')
+    const graphQLServerRestApi = restApi(stack, 'GraphQLServerRestApi')
 
     const graphQLServerLambdaIntegration = lambdaIntegration(graphQLServerLambda)
 
-    const graphQL = graphQLApiGateway.root.addResource('graphql')
+    const graphQL = graphQLServerRestApi.root.addResource('graphql')
     graphQL.addMethod('GET', graphQLServerLambdaIntegration)
     graphQL.addMethod('POST', graphQLServerLambdaIntegration)
+
 }
 
 const app = new App()
