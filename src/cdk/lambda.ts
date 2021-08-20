@@ -5,7 +5,7 @@ import path from 'path'
 
 export const nodeJSLambda = (stack: Construct, id: string, codePath: string) => {
     return new NodejsFunction(stack, id, {
-        entry: path.join(__dirname, `../${codePath}`),
+        entry: path.join(__dirname, codePath),
         runtime: Runtime.NODEJS_14_X,
         bundling: {
             externalModules: ['aws-sdk']
