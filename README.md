@@ -1,1 +1,1 @@
-Sample code for Medium article on Typescript Lambdas with the CDK.
+https://engineering.dunelm.com/deploying-typescript-lambdas-to-aws-with-the-cdk-ffa5519c16c5
